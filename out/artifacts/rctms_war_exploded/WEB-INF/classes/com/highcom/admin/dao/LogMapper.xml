@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.LogMapper">
+    <!-- 记录日志 -->
+    <insert id="addLog" parameterType="LogInfo" >
+    	insert into logInfo (logTime,adminName,module,title,content) values (#{logTime},#{adminName},#{module},#{title},#{content})
+    </insert>
+    
+     <select id="findLogList" parameterType="LogInfo" resultType="LogInfo" >
+       select * from LogInfo  where 1=1 
+       
+       <if test="module != null and module !=''">
+       	and module =#{module}
+       </if>
+       <if test="adminName != null and adminName !=''">
+       	and adminName = #{adminName}
+       </if> 
+       <if test="searchbegin != null and searchbegin !=''">
+       	and logTime >= #{searchbegin}
+       </if> 
+       <if test="searchend != null and searchend !=''">
+       	and  logTime  &lt;= #{searchend}
+       </if>        
+       order by logTime  desc
+    </select>
+    
+    
+    
+</mapper>

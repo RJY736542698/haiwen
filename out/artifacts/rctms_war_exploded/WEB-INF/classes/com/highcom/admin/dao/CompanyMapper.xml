@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.CompanyMapper">
+	
+    <insert id="addcompany" parameterType="Company" >
+		insert into company 
+		(
+			comName,contacts,telephone,userName,password,
+			vipbegin,vipend,management,recommend,category,
+			mainImage,brief,detailed,applyTime,registerTime,
+			modifyTime,deleteFlag,status,role
+		)
+		VALUES
+		(
+			#{comName,jdbcType=VARCHAR},#{contacts,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
+			#{vipbegin,jdbcType=DATE},#{vipend,jdbcType=DATE},#{management,jdbcType=VARCHAR},#{recommend,jdbcType=INTEGER},#{category,jdbcType=INTEGER},
+			#{mainImage,jdbcType=VARCHAR},#{brief,jdbcType=VARCHAR},#{detailed,jdbcType=BLOB},#{applyTime,jdbcType=DATE},now(),
+			now(),0,0,1
+		
+		)
+    </insert>
+
+    <select id="findVipCompanyList" parameterType="Company" resultType="Company" >
+       select * from company  where deleteflag=0 and vipend >= now()
+       
+       <if test="comName != null and comName !=''">
+       	and comName like '%${comName}%'
+       </if>
+       <if test="management != null and management !=''">
+       	and management like '%${management}%'
+       </if> 
+       <if test="searchbegin != null and searchbegin !=''">
+       	and registerTime >= #{searchbegin}
+       </if> 
+       <if test="searchend != null and searchend !=''">
+       	and #{searchend} >= registerTime
+       </if>        
+       order by vipend  ${sortType}
+    </select>
+    
+    <select id="findNormalCompanyList"  parameterType="Company" resultType="Company" >
+       select * from company  where deleteflag=0 and  now()> vipend
+       <if test="comName != null and comName !=''">
+       	and comName like '%${comName}%'
+       </if>
+       <if test="management != null and management !=''">
+       	and management like '%${management}%' 
+       </if> 
+      <if test="searchbegin != null and searchbegin !=''">
+       	and  registerTime >= #{searchbegin}
+       </if>
+       <if test="searchend != null and searchend !=''">
+       	and #{searchend} >= registerTime
+       </if>        
+       order by modifyTime desc      
+    </select>
+
+    <select id="findCompanyById" parameterType="String" resultType="Company" >
+        select * from company  where comid = #{comid} order by modifyTime desc
+    </select>
+    
+    <select id="findCompanyByName" parameterType="String" resultType="Company" >
+        select * from company  where comName = #{comName} limit 1;
+    </select>
+    
+    <!-- 根据用户名查询企业,用于校验用户名是否重复,此处没有排除加删除标记的企业 -->
+    <select id="findVipCompanyByUserName" parameterType="String" resultType="Company" >
+        select * from company  where userName = #{userName} limit 1;
+    </select>
+    
+    <update id="updateCompany" parameterType="Company" >
+		update company
+		<set>
+
+		<if test="comName != null and comName !=''">comName=#{comName,jdbcType=VARCHAR},</if>
+		<if test="contacts != null and contacts  !=''">contacts= #{contacts,jdbcType=VARCHAR},</if>
+		
+		<if test="telephone != null and telephone !=''">telephone= #{telephone,jdbcType=VARCHAR},</if>
+		<if test="userName != null and userName !=''">userName= #{userName,jdbcType=VARCHAR},</if>
+		<if test="password != null and password !=''">password= #{password,jdbcType=VARCHAR},</if>
+		<if test="vipbegin != null and vipbegin !=''">vipbegin= #{vipbegin,jdbcType=DATE},</if>
+		<if test="vipend != null and vipend !=''">vipend= #{vipend,jdbcType=DATE},</if>
+		<if test="management != null and management !=''">management= #{management,jdbcType=VARCHAR},</if>
+		
+		<if test="recommend != null and recommend !=''">recommend=#{recommend,jdbcType=NUMERIC},</if>
+		<if test="category != null and category !=''">category=#{category,jdbcType=NUMERIC},</if>
+		<if test="mainImage != null and mainImage !=''">mainImage=#{mainImage,jdbcType=VARCHAR},</if>
+		<if test="brief != null and brief !=''">brief=#{brief,jdbcType=VARCHAR},</if>
+		<if test="detailed != null and detailed !=''"> detailed=#{detailed,jdbcType=BLOB},</if>
+		<if test="applyTime != null and applyTime !=''">applyTime=#{applyTime,jdbcType=DATE},</if>
+		<if test="registerTime != null and registerTime !=''">registerTime=#{registerTime,jdbcType=DATE},</if>
+		<if test="status != null and status !=''">status= #{status,jdbcType=NUMERIC},</if>
+		<!---->
+		modifyTime=now()
+		</set>
+		where comid = #{comid,jdbcType=NUMERIC}
+
+    </update>
+
+    <delete id="deleteCompany" parameterType="String" >
+        update company set deleteflag = 1 where comid = #{comid,jdbcType=NUMERIC}
+    </delete>
+    
+    <!-- 查询首页推荐的企业 -->
+    <select id="findVipCompanyListByCategory"  resultType="Company" >
+       select * from company  where deleteflag=0 and vipend >= now()
+       and category=#{category} and recommend=1 
+       order by modifyTime  desc limit 8
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.HomeLoginMapper">
+
+    <select id="login" resultType="Company" parameterType="java.util.Map">
+        select * from company where userName=#{userName} and password=#{password}
+    </select>
+    
+    <select id="queryCompanyCountByName" resultType="Integer" parameterType="String">
+        select count(*) from company where userName=#{userName}
+    </select>
+    
+    <select id="queryCompanyCountByComName" resultType="Integer" parameterType="String">
+        select count(*) from company where comName=#{comName}
+    </select>
+    
+    <select id="queryCompanyCountByTelephone" resultType="Integer" parameterType="String">
+        select count(*) from company where telephone=#{telephone}
+    </select>
+    
+    <insert id="register" parameterType="java.util.Map">
+    	insert into company(comName,contacts,management,userName,password,telephone,registerTime,deleteFlag,role,vipend,vipbegin) values(#{comName},#{contacts},#{management},#{userName},#{password},#{telephone},#{registerTime},#{deleteFlag},#{role},#{vipend},#{vipbegin})
+    </insert>
+    
+    <update id="updateCompany" parameterType="java.util.Map">
+    	update company set userName=#{userName},telephone=#{telephone},comName=#{comName},contacts=#{contacts},management=#{management} where comid=#{comid}
+    </update>
+    
+    <update id="updatePwd" parameterType="java.util.Map">
+    	update company set password=#{password},modifyTime=#{modifyTime} where comid=#{comid}
+    </update>
+    
+    
+    <select id="queryCompanyByName" resultType="Company" parameterType="String">
+   		 select * from company where userName=#{userName}
+    </select>
+    
+</mapper>

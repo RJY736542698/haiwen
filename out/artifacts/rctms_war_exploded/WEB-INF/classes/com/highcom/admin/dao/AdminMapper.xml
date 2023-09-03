@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.AdminMapper">
+
+
+    <update id="updateHomeInfo" parameterType="HomeInfo">
+        update homeInfo set content=#{content},contentType=#{contentType},imageUrl=#{imageUrl} where id=#{id}
+    </update>
+
+    <select id="queryHomeInfo" resultType="HomeInfo">
+        select * from homeInfo
+    </select>
+    
+    <select id="queryHomeInfoByContentType" resultType="HomeInfo" parameterType="Integer">
+        select * from homeInfo where contentType=#{contentType}
+    </select>
+    
+    <select id="queryOrderByCondition1" resultType="Order" parameterType="Integer">
+        select orderid,orderNamech,orderNameen,supplyflag,recomflag,img1 from orders where supplyflag=0 and recomflag=1 and delflag=0 ORDER BY updatetime desc LIMIT 0,#{count}
+    </select>
+    
+    <select id="queryOrderByCondition2" resultType="Order" parameterType="Integer">
+        select orderid,orderNamech,orderNameen,supplyflag,recomflag,img1 from orders where supplyflag=1 and recomflag=1 and delflag=0 ORDER BY updatetime desc LIMIT 0,#{count}
+    </select>
+    
+    <select id="queryPagefooter" resultType="HomeInfo">
+    	select * from homeInfo where contentType in (2,3,4)
+    </select>
+    
+</mapper>

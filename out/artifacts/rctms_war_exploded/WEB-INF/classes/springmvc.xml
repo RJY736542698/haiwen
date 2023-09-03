@@ -1,0 +1,82 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.2.xsd">		
+		
+		<!-- 打开切面支持 -->
+		<aop:aspectj-autoproxy  />
+		  
+		<!-- 配置 读取properties文件 jdbc.properties -->
+		<context:property-placeholder location="classpath:jdbc.properties" />
+		
+	    <mvc:annotation-driven />
+	
+	    <!-- enable autowire 向容器自动注册 -->
+	    <context:annotation-config />
+	
+	    <!-- 设置使用注解的类所在的jar包 -->
+	    <context:component-scan base-package="com" />   
+	    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+		
+		 <!--将静态资源交由默认的servlet处理-->
+		 <mvc:default-servlet-handler/>
+		 <!--重要！配置swagger资源不被拦截-->
+		 <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+		 <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+		
+		<!-- 配置视图解释器 jsp -->
+		<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/"/>
+			<property name="suffix" value=".jsp"/>
+		</bean>
+
+		<!--图片上传配置-->
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+			<property name="defaultEncoding" value="UTF-8"></property>
+			<property name="maxUploadSize" value="104857600"></property>
+		</bean>
+		
+		<!-- 系统拦截器配置 -->
+	 	<mvc:interceptors>
+			<mvc:interceptor>			
+				 <mvc:mapping path="/**" /> 
+			     <mvc:exclude-mapping path="/admin/lib/**" />  
+			     <mvc:exclude-mapping path="/admin/css/**" />   
+			     <mvc:exclude-mapping path="/admin/js/**" />   
+			     <mvc:exclude-mapping path="/home_detail/**" />   
+			     <mvc:exclude-mapping path="/admin/login" />   
+			     <mvc:exclude-mapping path="/home/createCode" />   
+			     <mvc:exclude-mapping path="/js/**" />  
+			     <mvc:exclude-mapping path="/css/**" /> 
+			     <mvc:exclude-mapping path="/img/**" /> 
+			     <mvc:exclude-mapping path="/home/**" /> 
+			     <mvc:exclude-mapping path="/homeImages/**" /> 
+			     <mvc:exclude-mapping path="/admin/queryAdminInfoByName" /> 
+			     <mvc:exclude-mapping path="/admin/verifyMsgCode" /> 
+			     <mvc:exclude-mapping path="/admin/createMsgCode" /> 
+			     <mvc:exclude-mapping path="/admin/updatePwd" /> 
+			     <mvc:exclude-mapping path="/kindeditor/**" /> 
+			     <mvc:exclude-mapping path="/admin/logout" /> 
+			     <mvc:exclude-mapping path="/admin/indexCompList" /> 
+			     <mvc:exclude-mapping path="/null" /> 
+			     <mvc:exclude-mapping path="/admin/refreshSession" /> 
+				 <bean class="com.highcom.aop.SecurityInterceptor" />	
+			</mvc:interceptor>
+	   </mvc:interceptors> 
+	
+</beans>
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.NewsMapper">
+
+    <select id="allNews" resultType="news">
+        select n.*, t.typename from news n
+            LEFT JOIN newstype t
+            ON n.category=t.tid
+            order by publish desc
+    </select>
+
+    <select id="findNewsById" parameterType="int" resultType="news">
+       select * from news  where id=#{id}
+    </select>
+
+
+    <select id="findNewsByComplex" parameterType="news" resultType="news">
+        select n.*, t.typename from news n
+        LEFT JOIN newstype t
+        ON n.category=t.tid
+        where n.category=t.tid
+         <if test="title != null and title != ''">
+             and title like "%${title}%"
+         </if>
+         <if test="publish != null and publish != ''">
+             and publish = #{publish}
+         </if>
+        order by publish desc
+    </select>
+
+    <select id="findNewsType" resultType="newsType">
+        select * from newstype
+    </select>
+
+    <insert id="insertNews" parameterType="news" useGeneratedKeys="true" keyProperty="id">
+        insert into news(category,title,msgpic,intro,content,publish,updatetime,disp,writer) values(#{category},#{title},#{msgpic},#{intro},#{content},#{publish},#{updatetime},#{disp},#{writer});
+    </insert>
+
+    <update id="updateNews" parameterType="news">
+        update news
+            <set>
+                <if test="title != null and title != ''">
+                    title = #{title},
+                </if>
+                <if test="category != null">
+                    category = #{category},
+                </if>
+                <if test="msgpic != null and msgpic!=''">
+                    msgpic = #{msgpic},
+                </if>
+                <if test="intro != null and intro != ''">
+                    intro = #{intro},
+                </if>
+                <if test="content !=null and content != ''">
+                    content = #{content},
+                </if>
+                <if test="publish !=null and publish != ''">
+                    publish = #{publish},
+                </if>
+                <if test="disp !=null">
+                    disp = #{disp},
+                </if>
+                updatetime = #{updatetime}
+            </set>
+            where id = #{id}
+    </update>
+
+    <delete id="delNews" parameterType="int">
+        delete from news where id = #{id}
+    </delete>
+
+<!--前端-->
+    <select id="findNewsByType" parameterType="int" resultType="news">
+        select * from news where category=#{category} and disp=1 order by publish desc
+    </select>
+</mapper>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jaxb-core-2.1.14">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../rctms/web/WEB-INF/lib/jaxb-core-2.1.14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

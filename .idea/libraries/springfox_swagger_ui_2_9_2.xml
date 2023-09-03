@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="springfox-swagger-ui-2.9.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../rctms/web/WEB-INF/lib/springfox-swagger-ui-2.9.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

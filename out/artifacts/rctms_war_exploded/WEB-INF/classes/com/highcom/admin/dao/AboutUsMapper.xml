@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.AboutUsMapper">
+    <select id="dispAboutus" resultType="aboutus">
+        select * from aboutus order by id desc limit 1
+    </select>
+
+    <select id="dispAboutusById" parameterType="int" resultType="aboutus">
+        select * from aboutus where id=#{id}
+    </select>
+
+    <insert id="saveAboutUs" parameterType="aboutUs" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO aboutus (title,pic,intro,detail) VALUES (#{title}, #{pic}, #{intro}, #{detail})
+    </insert>
+
+    <update id="updateAboutUs" parameterType="aboutUs">
+        update aboutus set title=#{title}, pic=#{pic}, intro=#{intro}, detail=#{detail} where id=#{id}
+    </update>
+
+</mapper>

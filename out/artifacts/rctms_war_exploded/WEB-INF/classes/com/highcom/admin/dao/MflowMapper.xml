@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.MflowMapper">
+    <select id="moduleShow" resultType="mtype">
+        select * from mtype
+    </select>
+
+    <select id="mflowById" parameterType="int" resultType="mflow">
+        select * from mflow
+            where moduleid=(select id from mtype where id=#{id})
+            order by id desc
+            limit 1
+    </select>
+
+    <select id="mflowForOne" parameterType="int" resultType="mflow">
+        select * from mflow where id=#{id}
+    </select>
+
+    <!--
+    MyBatis如何获取插入记录的自增长字段值:
+    添加属性“useGeneratedKeys”和“keyProperty”，其中keyProperty是Java对象的属性名
+    -->
+    <insert id="mflowInsert" parameterType="mflow" useGeneratedKeys="true" keyProperty="id">
+        insert into mflow(title, detail, moduleid) values(#{title}, #{detail}, #{moduleid})
+    </insert>
+
+    <update id="mflowUpdate" parameterType="mflow">
+        update mflow set title=#{title}, detail=#{detail} where id=#{id}
+    </update>
+</mapper>

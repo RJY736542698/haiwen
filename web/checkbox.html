@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>
+            <input type="checkbox" class="parent-checkbox"> Parent 1
+        </td>
+        <td>
+            <input type="checkbox" class="child-checkbox"> Child 1<br>
+            <input type="checkbox" class="child-checkbox"> Child 2<br>
+            <input type="checkbox" class="child-checkbox"> Child 3<br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="parent-checkbox"> Parent 2</td>
+        <td>
+            <input type="checkbox" class="child-checkbox"> Child 4<br>
+            <input type="checkbox" class="child-checkbox"> Child 5<br>
+            <input type="checkbox" class="child-checkbox"> Child 6<br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="parent-checkbox"> Parent 3
+        </td>
+        <td>
+            <input type="checkbox" class="child-checkbox"> Child 7<br>
+            <input type="checkbox" class="child-checkbox"> Child 8<br>
+            <input type="checkbox" class="child-checkbox"> Child 9<br>
+        </td>
+    </tr>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // 事件委托，处理复选框点击事件
+        $(document).on('click', '.parent-checkbox', function() {
+            var isChecked = $(this).prop('checked'); // 获取一级复选框的选中状态
+            $(this).closest('td').nextUntil('tr:has(.parent-checkbox)').find('.child-checkbox').prop('checked', isChecked); // 控制二级复选框的选中状态
+        });
+
+        $(document).on('click', '.child-checkbox', function() {
+            var isChecked = $(this).prop('checked'); // 获取二级复选框的选中状态
+            $(this).closest('td').prevAll('td:has(.parent-checkbox)').first().find('.parent-checkbox').prop('checked', isChecked); // 更新上级一级复选框的选中状态
+        });
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.TotalMapper">
+	<!-- 查询订单总数 -->
+    <select id="getOrderCount" resultType="int">
+        select  count(*) from orders  where delflag !=1
+    </select>
+    
+    <!-- 查询已完成或未完成的订单数量 -->
+    <select id="getOrderCountByTradeFlag" resultType="int">
+        select  count(*) from orders where tradeFlag=#{flag}  and delflag !=1
+    </select>
+    
+    <!-- 查询采购或供应订单的数量 -->
+    <select id="getOrderCountBySupplyflag" resultType="int">
+        select  count(*) from orders where supplyFlag=#{flag}  and delflag !=1
+    </select>
+    
+    <!-- 按年度查询采购或供应订单的数量,返回本年中的所有月和本月数量的对应  -->
+     <select id="totalOrderByYear" resultType="totalInfo" >
+        select  year(publishtime) as year,month(publishtime) as month ,count(*) as value from orders where  
+        year(publishtime) =#{year} and 
+        supplyflag=#{supplyflag} and 
+        tradeflag=#{tradeflag} and delflag !=1 
+        group by month(publishtime) 
+    </select>
+    
+    <!-- 统计企业总数 -->
+     <select id="getCompanyCount" resultType="int">
+        select  count(*) from company where  deleteFlag !=1
+    </select>
+    
+    <!-- 统计vip企业总数 (vip过期时间未到的)-->
+     <select id="getVipCompanyCount" resultType="int">
+		select  count(*) from company where date(now())&lt;=vipend and deleteFlag !=1
+    </select>
+    
+     <!-- 统计某年某月下企业总数 -->
+     <select id="getCompanyCountByYM" resultType="int">
+		 select  count(*) from company where year(registerTime)=#{year} and month(registerTime)=#{month} and deleteFlag !=1
+    </select>
+    
+      <!-- 统计某年某月下vip企业总数 -->
+      <!-- 过去试图显示出每个月的vip注册情况,但在业务上这样处理并不理想
+		 select  count(*) from company where year(registerTime)=#{year} and month(registerTime)=#{month} and deleteFlag !=1
+		 and #{vipEnd} &lt;=vipend 
+	  -->
+		  
+     <select id="getVipCompanyCountByYM" resultType="int">
+		 select  count(*) from company where year(registerTime)=#{year} and month(registerTime)=#{month} and deleteFlag !=1
+		 and  vipend >= now();
+    </select>
+    
+    <!-- 统计采购或供应订单的访问量 -->
+    <select id="getOrderClickCount" resultType="Integer">
+    	select sum(clickCount) from orders where supplyflag=#{supplyflag}  and delFlag !=1
+    </select>
+    
+    <!-- 得到点击量前n的订单列表 -->
+    <select id="getTopClick" resultType="order">
+    	select * from orders where supplyflag=#{supplyflag}  order by clickcount desc limit #{n}
+    </select>
+    
+    <!-- 得到订单对应的年份列表 -->
+    <select id="getOrderYears"  resultType="string">
+    	select distinct year(publishtime) from orders where publishtime is not null and delflag!=1 order by publishtime desc 
+    </select>
+    
+    <!-- 得到企业对应的年份列表 -->
+    <select id="getCompanyYears" resultType="string">
+    	select   distinct year(registertime)  from company  where registertime is not null  and deleteflag!=1 order by registertime desc 
+    </select>
+    
+    
+</mapper>

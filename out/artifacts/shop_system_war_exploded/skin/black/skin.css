@@ -1,0 +1,32 @@
+.login-layout,
+.login-main:after{background-color: #222A2D!important;}
+.login-main .login_btn{background: #222A2D!important;}
+.Reg_log_style .frame_style.form_errors{ border:1px solid #222A2D!important}
+.Reg_log_style .frame_style.form_errors .Codes_region{border-left:1px solid #222A2D!important;}
+.Reg_log_style .frame_style.form_errors label{ border-right:1px solid #222A2D!important;color:#222A2D!important}
+input[type=checkbox].ace+.lbl::before, input[type=radio].ace+.lbl::before{color:#222A2D!important ;}
+input[type=checkbox].ace:hover+.lbl::before, input[type=radio].ace:hover+.lbl::before, 
+input[type=checkbox].ace+.lbl:hover::before, input[type=radio].ace+.lbl:hover::before{border-color: #222A2D!important;	}
+.login-main .clickBombbox{color:#222A2D!important ;}
+.bk-herder,.bk-footer{background:#222A2D; color: #FFFFFF;}
+.inte-operation{border-left:1px solid #333333;}
+.column-name.open,
+.column-name.active,.leftModule .menu-section .column-name.open{ background:#000000; color:#ffffff; border-bottom: 1px solid #000000;}
+.bk-con-menu ul .submenu .column-name.open{background: #dddddd; color: #ffffff;}
+.tab-navigation li.active{background: #323232}
+.tab-navigation li.active:before{border-bottom: 3px solid rgb(153, 153, 153);}
+.bk-con-menu.leftModule .samebtn{background: #222A2D; color: #FFFFFF; border: 1px solid #222A2D!important;}
+.tab-navigation li.home.active:before{background: #323232;border-bottom: 3px solid rgba(48,158,237,1.00);}
+.skin-section, .fullscreen, .notice-section {border-left: 1px solid #333333;position: relative;}
+.leftModule.bk-con-menu{background: #222A2D; border-bottom: 1px solid #323232;}
+.leftModule .menu-section .column-name a{color: #999999; border: 0;}
+.leftModule .menu-section .column-name a:after{border-bottom: 1px solid rgba(255,255,255,0.2);}
+.tab-navigation li{background:#393939;}
+.tab-navigation li.home {background: #222A2D;border: 0px;border-right: 1px solid #2D2D2D;}
+.bk-con-menu ul .submenu .column-name.open,
+.submenu.elasticStyle .column-name.open{ background: #D2D2D2!important; color: #ffffff; border-bottom: 0;}
+.bk-con-menu ul .submenu .open a,
+.bk-con-menu ul .submenu .open a .arrow{color: #ffffff;}
+.bk-con-menu ul .submenu .open a:hover{background: #000000;}
+.bk-con-menu ul .submenu .open a.name:hover{background: #d2d2d2;}
+.leftModule.bk-con-menu ul .submenu.elasticStyle{border: 1px solid #222a2d;border-left: 0px;}

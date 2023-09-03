@@ -1,0 +1,105 @@
+{
+	"brandlist": [
+		{
+			"id": 1,
+			"sort": 1,
+			"status": 0,
+			"logoImg": "1145.jpg",
+			"quantity": 14,
+			"name": "华莱士"
+		}, {
+			"id": 2,
+			"sort": 1,
+			"status": 1,
+			"logoImg": "34.jpg",
+			"quantity": 21,
+			"name": "比克度"
+		}, {
+			"id": 2,
+			"sort": 1,
+			"status": 0,
+			"logoImg": "42.jpg",
+			"quantity": 11,
+			"name": "欧莱雅"
+		}, {
+			"id": 2,
+			"sort": 1,
+			"status": 1,
+			"logoImg": "152.jpg",
+			"quantity": 21,
+			"name": "丝塔芙"
+		}, {
+			"id": 2,
+			"sort": 4,
+			"status": 1,
+			"logoImg": "156.jpg",
+			"quantity": 66,
+			"name": "夏士莲"
+		}, {
+			"id": 2,
+			"sort": 3,
+			"status": 1,
+			"logoImg": "199.jpg",
+			"quantity": 124,
+			"name": "辉子"
+		}, {
+			"id": 2,
+			"sort": 2,
+			"status": 1,
+			"logoImg": "245.jpg",
+			"quantity": 24,
+			"name": "御泥坊"
+		}
+	],
+	"brandSort": [
+	    {
+			"id": 0,
+			"name":"全部",
+			"quantity":345
+		},
+		{
+			"id": 1,
+			"name":"化妆品",
+			"quantity": 24
+		},
+		{
+			"id": 2,
+			"name": "家电",
+			"quantity": 14
+		},{
+			"id": 3,
+			"name": "电脑",
+			"quantity": 12
+		},
+		{
+			"id": 4,
+			"name": "手机",
+			"quantity":12
+		},
+		{
+			"id": 5,
+			"name": "数码配件",
+			"quantity": 44
+		},
+		{
+			"id": 6,
+			"name": "服装",
+			"quantity": 54
+		},
+		{
+			"id": 7,
+			"name": "鞋帽/装饰",
+			"quantity": 63
+		},
+		{
+			"id": 8,
+			"name": "卫浴",
+			"quantity":45
+		},
+		{
+			"id": 9,
+			"name": "小家电",
+			"quantity": 67
+		}
+	]
+}

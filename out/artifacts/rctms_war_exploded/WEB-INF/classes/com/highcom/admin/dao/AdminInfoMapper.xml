@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.AdminInfoMapper">
+
+	<!-- 查询全部管理员列表 -->
+    <select id="selectAll" resultType="adminInfo">
+        select * from adminInfo where delFlag!='1' order by id desc
+    </select>
+    
+    <!-- 给管理员做删除标记 -->
+    <update id="delAdminById" >
+    	update adminInfo set delFlag='1' where id=#{id}
+    </update>
+    
+    <!-- 根据id查询管理员信息 -->
+    <select id="getAdminInfoById" resultType="adminInfo">
+        select * from adminInfo where id=#{id}
+    </select>
+    
+    <!-- 更新管理员信息 -->
+    <update id="updateAdmin" >
+    	update adminInfo set adminName=#{adminName},password=#{password}, realName=#{realName},role=#{role},phone=#{phone} where id=#{id}
+    </update>
+    
+    <!-- 添加管理员 -->
+    <update id="addAdmin" >
+    	insert into adminInfo (adminName,realName,phone,role,password,addTime,delFlag) values (#{adminName},#{realName},#{phone},#{role},#{password},#{addTime},#{delFlag} )
+    </update>
+    
+    <!-- 登陆 -->
+     <select id="login" resultType="adminInfo" parameterType="java.util.Map">
+        select * from adminInfo where adminName=#{adminName} and password=#{password} and delFlag=0
+    </select>
+    
+     <select id="queryAdminInfoByName" resultType="AdminInfo" parameterType="String">
+   		 select * from adminINfo where adminName=#{adminName}
+    </select>
+    
+    <update id="updatePwd" parameterType="java.util.Map">
+    	update adminInfo set password=#{password} where id=#{id}
+    </update>
+
+    <!-- 根据用户名查询管理员信息 -->
+    <select id="getAdminByName" resultType="adminInfo">
+        select * from adminInfo where adminName=#{adminName} limit 1
+    </select>
+    
+    
+    <select id="queryAdminCountByPhone" resultType="Integer" parameterType="String">
+        select count(*) from admininfo where phone=#{phone}
+    </select>
+    
+</mapper>

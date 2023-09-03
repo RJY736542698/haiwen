@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../blog-admin-master/blog-admin-master.iml" filepath="$PROJECT_DIR$/../blog-admin-master/blog-admin-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../blog-web-last/blog-web-last.iml" filepath="$PROJECT_DIR$/../blog-web-last/blog-web-last.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../rctms/rctms.iml" filepath="$PROJECT_DIR$/../../../rctms/rctms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-system.iml" filepath="$PROJECT_DIR$/shop-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ssm-blog/ssm-blog.iml" filepath="$PROJECT_DIR$/../ssm-blog/ssm-blog.iml" />
+    </modules>
+  </component>
+</project>

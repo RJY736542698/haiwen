@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.highcom.admin.dao.AssistantMapper">
+
+    <select id="showAllAssitant" resultType="Assistant">
+        select * from assitant limit 6
+    </select>
+
+    <update id="updateAssitant" parameterType="Assistant">
+        update assitant set aname=#{aname}, address=#{address} where id=#{id}
+    </update>
+
+    <insert id="AddAssitant" parameterType="Assistant">
+        insert into assitant(aname, address) values(#{aname}, #{address})
+    </insert>
+</mapper>

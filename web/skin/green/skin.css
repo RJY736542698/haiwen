@@ -1,0 +1,123 @@
+/*****************登录页*****************/
+.login-layout,
+.login-main:after{background-color: #72B63F!important;}
+.login-main .login_btn{background: #72B63F!important;}
+.Reg_log_style .frame_style.form_errors{ border:1px solid #72B63F!important}
+.Reg_log_style .frame_style.form_errors .Codes_region{border-left:1px solid #72B63F!important;}
+.Reg_log_style .frame_style.form_errors label{ border-right:1px solid #72B63F!important;color:#72B63F!important}
+input[type=checkbox].ace+.lbl::before, input[type=radio].ace+.lbl::before{color:#72B63F!important ;}
+input[type=checkbox].ace:hover+.lbl::before, input[type=radio].ace:hover+.lbl::before, input[type=checkbox].ace+.lbl:hover::before, input[type=radio].ace+.lbl:hover::before{
+	border-color: #72B63F!important;	
+}
+.login-main .clickBombbox{color:#72B63F!important ;}
+.bk-herder,
+.bk-footer {
+	background: #72B63F;
+	color: #FFFFFF;
+}
+.inte-operation {
+	border-left: 1px solid #438612;
+}
+
+.column-name.open,
+.column-name.active {
+	background: #72B63F;
+	color: #ffffff
+}
+
+.tab-navigation li.active:before {
+	border-bottom: 3px solid #ffffff;
+	background: #f2f2f2
+}
+
+.tab-navigation li.home.active:before {
+	background: #f2f2f2;
+	border-bottom: 3px solid #ffffff;
+}
+.title-menu{background: #72B63F;}
+.menu-section .column-name a,
+.bk-con-menu ul .submenu .column-name a{color: #72B63F;}
+.footer-top {border-top: 1px solid #9bda6c;}
+.footer-top .tab-column:before{
+		content: '';
+	border-top: 1px solid #438612;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 1px;
+	width: 100%;
+	
+}
+.footer-top .inte-operation:after{
+	content: '';
+	border-top: 1px solid #438612;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 1px;
+	width: 100%;
+	
+}
+.tab-navigation li.home,
+.tab-navigation li {
+	background: #f2f2f2;
+	color: #999999;
+	border-right: 1px solid #dddddd;
+	float: left;
+	margin-top: 1px;
+}
+
+.tab-navigation li.active {
+	background: #ffffff;
+	color: #666666;
+	margin-top: 1px;
+	border-top: 0;
+	border-right: 1px solid #dddddd;
+}
+
+.skin-section:before,
+.fullscreen:before,
+.notice-section:before,
+.inte-operation:before {
+	content: '';
+	border-right: 1px solid #9bda6c;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+	width: 1px;
+}
+.bk-con-menu{background: #ffffff;}
+.leftModule.bk-con-menu .breadcrumb:before{content:'';position: absolute; height:100%; right:0;border-right: 1px solid #dddddd;}
+.leftModule.bk-con-menu .menubtn{background: #ffffff; border-left: 1px solid #ffffff;}
+.leftModule.bk-con-menu .samebtn{ border-right: 1px solid #dddddd;border-bottom: 1px solid #dddddd;}
+.bk-herder-logo.wap-header {
+	border-bottom: 1px solid #438612;
+}
+.timehtml {
+    background: #ffc903;
+    color: #ffffff;
+    border-right: 1px solid #dddddd;
+}
+.bk-herder-logo.wap-header:before {
+	content: '';
+	border-bottom: 1px solid #9bda6c;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	height: 1px;
+	width: 100%;
+}
+.skin-section, .fullscreen, .notice-section {
+    border-left: 1px solid #438612;
+    position: relative;
+}
+.column-name.open i.iconfont {
+	color: #ffffff;
+}
+
+.column-name i.iconfont,
+.tab-navigation li i,.clickBombbox.selected, .clickBombbox > .selected{
+	color: #72B63F;
+}
+.tab-navigation{background-color: #f2f2f2; height: 39px;}
